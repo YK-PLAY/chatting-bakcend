@@ -2,9 +2,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val ktorVersion = "1.5.2"
 val junitVersion = "5.6.0"
+val logbackVersion = "1.2.3"
 
 plugins {
     kotlin("jvm") version "1.5.0"
+    kotlin("plugin.serialization") version "1.4.31"
     application
 }
 
@@ -23,6 +25,8 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     implementation("io.ktor:ktor-server-netty:$ktorVersion")
     implementation("io.ktor:ktor-html-builder:$ktorVersion")
+    implementation("io.ktor:ktor-serialization:$ktorVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-html-jvm:0.7.2")
 }
 
@@ -35,5 +39,5 @@ tasks.withType<KotlinCompile>() {
 }
 
 application {
-    mainClassName = "ServerKt"
+    mainClass.set("com.github.ykplay.ApplicationKt")
 }
